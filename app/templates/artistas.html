@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %} Artistas {% endblock %}
+
+{% block content %}
+<header class="masthead fondo3">
+    <div class="container">
+        <div>
+            <a href="{% url 'home' %}"><img class="rs_logo" src="{% static 'img/logos_rs/logo_rsi.png' %}" style="width: 65%; max-width: 550px;"></a>
+        </div>
+        <p class="card-text my-3">Descubre a nuestros Artistas!!</p>
+        <div class="">
+            <audio class="rs_radio" id="stream" controls preload="none" style="width: 60%; max-width: 500px;">
+                <source class="rs_radio" src="https://cloudstream2030.conectarhosting.com/9984/stream" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+</header>
+<!-- Artistas -->
+<section class="page-section" id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase text-black pb-5">Artistas</h2>
+        </div>
+        <div class="row text-center">
+                {% for a in artistas %}
+                <div class="col-xxl-4 col-xl-4 col-lg-6 pb-5 px-4">
+                    <img class="card-img-top" style="border-radius: 0.90rem !important;" src="{{a.imagen.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{a.nombre}}</h5>
+                        <p class="card-text">{{a.informacion}}</p>
+                        <a href="{{a.link}}" target="_blank" class="btn btn-primary">Ver Trabajo</a>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

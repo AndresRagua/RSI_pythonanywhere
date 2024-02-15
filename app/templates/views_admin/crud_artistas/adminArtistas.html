@@ -1,0 +1,61 @@
+{% extends 'views_admin/administracion.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Administracion de Artistas {% endblock %}
+{% block content %}
+<section>
+    <div class="row admin">
+        <div class="container admin pb-5">
+            <div class="col-md-12">
+                <h2 class="text-center pb-3">Administracion de Artistas</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="centrado">Nombre</th>
+                                <th class="centrado">Informacion</th>
+                                <th class="centrado">Link</th>
+                                <th class="centrado">Imagen</th>
+                                <th class="centrado" colspan="4">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in artista %}
+                            <tr>
+                                <td class="centrado">{{a.nombre}}</td>
+                                <td class="centrado">{{a.informacion}}</td>
+                                <td class="centrado"><a href="{{a.link}}">Link</a></td>
+                                <td class="centrado"><a href="{{a.imagen.url}}">Imagen</a></td>
+                                <td class="centrado">
+                                    <a href="{% url 'editarArtista' a.id %}" class="btn btn-sm btn-block btn-info"><i class="fas fa-pencil-alt"></i> Editar</a>
+                                </td>
+                                <td class="centrado">
+                                    <a href="/eliminarArtista/{{a.id}}/" class="btn btn-sm btn-block btn-danger btnEliminacion"><i class="far fa-trash-alt"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pt-5">
+            <h2 class="centrado pb-3">Agregar Artista</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form id="formularioArtista" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <table class="mb-3">
+                            {{ form | crispy }}
+                        </table>
+                        <div class="centrado">
+                            <input type="submit" class="btn btn-lg btn-block btn-warning centrado" value="save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

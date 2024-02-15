@@ -1,0 +1,27 @@
+{% extends 'views_admin/administracion.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Administracion de Publicidad {% endblock %}
+{% block content %}
+<section>
+    <div class="row admin">
+        <div class="col-md-4 pt-5">
+            <h2 class="centrado pb-3">Editar Publicidad</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form id="formularioPublicidad" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <table class="mb-3">
+                            {{ form | crispy }}
+                        </table>
+                        <div class="centrado">
+                            <input type="submit" class="btn btn-lg btn-block btn-warning centrado" value="save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

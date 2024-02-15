@@ -1,0 +1,56 @@
+{% extends 'home.html' %}
+{% load static %}
+<head>
+    {% block title %} Contacto {% endblock %}    
+</head>
+
+<body>
+    {% block content %}
+    <header class="masthead fondo4">
+        <div class="container">
+            <div>
+                <a href="{% url 'home' %}"><img src="{% static 'img/logos_rs/logo_rsi.png' %}" style="width: 65%; max-width: 550px;"></a>
+            </div>
+            <p class="card-text my-3">Contacta con nosotros!!</p>
+            <div class="">
+                <audio id="stream" controls preload="none" style="width: 60%; max-width: 500px;">
+                    <source src="https://cloudstream2030.conectarhosting.com/9984/stream" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </header>
+    <section class="page-section" id="contact">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Contáctanos</h2>
+                <h3 class="section-subheading text-muted">Ingresa tus datos y contacta con nosotros!</h3>
+            </div>
+            <form id="contactForm" action="/registrarContacto/" method="POST">{% csrf_token %}
+                <div class="row align-items-stretch">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control" id="name" name="name" type="text" placeholder="Nombre" 
+                            minlength="3" maxlength="50" required autofocus/>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="email" name="email" type="email" placeholder="Correo" required />
+                        </div>
+                        <div class="form-group mb-md-0">
+                            <input class="form-control" id="phone" name="phone" type="tel" placeholder="Número" required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-textarea mb-md-0">
+                            <textarea class="form-control" id="message" name="message" placeholder="Mensaje" required></textarea>
+                        </div>
+                    </div>
+                    <div class="text-center form-group mt-5">
+                        <input type="submit" class="btn btn-success btn-block text-white" value="Enviar">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+<script src="{% static 'js/gestionContacto.js' %}"></script>
+</body>
